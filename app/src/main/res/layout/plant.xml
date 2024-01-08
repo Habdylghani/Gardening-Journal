@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:foreground="?android:attr/selectableItemBackground"
+        tools:ignore="MissingConstraints">
+
+
+        <ImageView
+            android:id="@+id/imgPlant"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/baseline_local_florist_24" />
+
+        <TextView
+            android:id="@+id/tvPlantName"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/imgPlant"
+
+            android:text="Plant Name"
+            android:textAlignment="center"
+            android:background="@android:color/holo_green_dark"
+            android:textColor="@android:color/black"
+            android:layout_gravity="bottom"
+            android:textSize="20sp"
+            tools:ignore="RtlCompat" />
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

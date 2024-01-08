@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Gardening Journal</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_home_fragment">Hello Dear User to your</string>
+</resources>
