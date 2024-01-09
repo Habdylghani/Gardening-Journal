@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gardeningjournal.database.Plant
+import com.example.gardeningjournal.data.database.entities.Plant
 import java.util.ArrayList
 
 class MyRecViewAdapter(
@@ -18,7 +18,7 @@ class MyRecViewAdapter(
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRecViewAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.plant, parent, false)
         return MyViewHolder(view)

@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.gardeningjournal.database.Plant
+import com.example.gardeningjournal.data.database.entities.Plant
 
 
 class GardeningFragment : Fragment() {
