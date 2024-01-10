@@ -1,21 +1,25 @@
-package com.example.gardeningjournal
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gardeningjournal.R
 import com.example.gardeningjournal.data.database.entities.Plant
-import java.util.ArrayList
 
 class MyRecViewAdapter(
-    var plantlist: ArrayList<Plant>,
-    private val onItemClick: (Plant) -> Unit
-) : RecyclerView.Adapter<MyRecViewAdapter.MyViewHolder>()  {
+    var plantlist: List<Plant>,
+    private val viewModel: PlantViewModel,
+    private val plantItemClickListener: PlantItemClickListener? = null
+) : RecyclerView.Adapter<MyRecViewAdapter.MyViewHolder>() {
+
+    interface PlantItemClickListener {
+        fun onPlantItemClick(plant: Plant)
+    }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imgPlant)
-
+        val textView: TextView = itemView.findViewById(R.id.tvPlantName)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -27,7 +31,13 @@ class MyRecViewAdapter(
     override fun getItemCount() = plantlist.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.imageView.setImageResource(plantlist[position].imageResourceId)
-    }
+        val currentPlant = plantlist[position]
 
+        holder.imageView.setImageResource(currentPlant.imageResourceId)
+        holder.textView.text = currentPlant.name
+
+        holder.itemView.setOnClickListener {
+            plantItemClickListener?.onPlantItemClick(currentPlant)
+        }
+    }
 }

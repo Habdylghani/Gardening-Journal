@@ -1,22 +1,56 @@
 package com.example.gardeningjournal
 
+import AddPlantDialog
+import MyRecViewAdapter
+import PlantViewModel
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.gardeningjournal.data.database.entities.Plant
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class GardeningFragment : Fragment() {
-    private val plantlist = ArrayList<Plant>()
+    private lateinit var plantViewModel: PlantViewModel
     private lateinit var adapter: MyRecViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gardening, container, false)
+        val view = inflater.inflate(R.layout.fragment_gardening, container, false)
+        val recyclerView: RecyclerView = view.findViewById(R.id.rvGardening)
+        val fabAdd: FloatingActionButton = view.findViewById(R.id.fab_add)
+
+        plantViewModel = ViewModelProvider(this).get(PlantViewModel::class.java)
+        adapter = MyRecViewAdapter(emptyList(), plantViewModel)
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL, false)
+
+
+        plantViewModel.getAllPlants()?.observe(viewLifecycleOwner, Observer { plants ->
+            plants?.let {
+                adapter.plantlist = it
+                adapter.notifyDataSetChanged()
+            }
+        })
+
+        fabAdd.setOnClickListener {
+            showAddPlantDialog()
+        }
+
+        return view
+    }
+
+    private fun showAddPlantDialog() {
+        val addPlantDialog = AddPlantDialog(requireContext(), plantViewModel)
+        addPlantDialog.show()
     }
 }

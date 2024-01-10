@@ -5,8 +5,14 @@ import androidx.room.PrimaryKey
 
 
 @Entity
-data class Plant(var name: String, var desc: String, var imageResourceId: Int){
-
+data class Plant(
     @PrimaryKey(autoGenerate = true)
-    var id : Int? = null
-}
+    val id: Int = 0,
+    val name: String,
+    val type: String,
+    val wateringFrequency: Int,
+    val plantingDate: String,
+    val imageResourceId: Int
+)
+
+

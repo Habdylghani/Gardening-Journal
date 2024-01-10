@@ -1,24 +1,34 @@
-package com.example.gardeningjournal
-
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.example.gardeningjournal.data.database.GardeningDatabase
 import com.example.gardeningjournal.data.database.entities.Plant
-import com.example.gardeningjournal.data.repositories.PlantRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+class PlantViewModel(application: Application) : AndroidViewModel(application) {
 
-class PlantViewModel(
-    private val repository : PlantRepository
-): ViewModel() {
+    private val gardeningDatabase = GardeningDatabase.invoke(application)
+    private val plantList: LiveData<List<Plant>> = gardeningDatabase.getPlantDao().getAllPlants()
 
-    fun upsertPlant(item: Plant) = CoroutineScope(Dispatchers.Main).launch {
-        repository.upsertPlant(item)
+    // New LiveData for selected plant
+    private val _selectedPlant = MutableLiveData<Plant>()
+    val selectedPlant: LiveData<Plant>
+        get() = _selectedPlant
+
+    fun upsertPlant(item: Plant) = viewModelScope.launch {
+        gardeningDatabase.getPlantDao().upsertPlant(item)
     }
 
-    fun deletePlant(item: Plant) = CoroutineScope(Dispatchers.Main).launch {
-        repository.deletePlant(item)
+    fun deletePlant(item: Plant) = viewModelScope.launch {
+        gardeningDatabase.getPlantDao().deletePlant(item)
     }
 
-    fun getAllPlants() = repository.getAllPlants()
+    fun getAllPlants() = plantList
+
+    // Function to set the selected plant
+    fun setSelectedPlant(plant: Plant) {
+        _selectedPlant.value = plant
+    }
 }
