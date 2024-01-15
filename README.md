@@ -25,17 +25,17 @@ The Gardening Journal App is a mobile application designed to help users keep tr
 
 ## Screenshots
 
-![Home Screen](/Screenshot 2024-01-15--1.png)
+![Home Screen](Screenshot 2024-01-15--1.png)
 *Home Screen: Navigate through the app's main features.*
 
-![Garden Log Screen](/Screenshot 2024-01-15--2.png)
+![Garden Log Screen](Screenshot 2024-01-15--2.png)
 *Garden Log Screen: View the list of plants and add new plants.*
 
-![Plant Details Screen](/Screenshot 2024-01-15--3.png)
+![Plant Details Screen](Screenshot 2024-01-15--3.png)
 *Plant Details Screen: Tap on a plant in the Garden Log to view detailed information.*
 
-![Plant Details Screen](/Screenshot 2024-01-15--4.png)
+![Plant Details Screen](Screenshot 2024-01-15--4.png)
 *Plant Details Screen: Tap on a plant in the Garden Log to update detailed information.*
 
-![Navigation Graph](/Screenshot 2024-01-15--5.png)
+![Navigation Graph](Screenshot 2024-01-15--5.png)
 *Navigation Graph: Visual representation of the app's navigation flow.*
