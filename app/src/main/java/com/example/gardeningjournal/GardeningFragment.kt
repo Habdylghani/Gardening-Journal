@@ -10,9 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gardeningjournal.databinding.FragmentHomeBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -32,8 +34,7 @@ class GardeningFragment : Fragment() {
         adapter = MyRecViewAdapter(emptyList(), plantViewModel)
 
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL, false)
-
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
 
         plantViewModel.getAllPlants()?.observe(viewLifecycleOwner, Observer { plants ->
             plants?.let {
@@ -45,6 +46,16 @@ class GardeningFragment : Fragment() {
         fabAdd.setOnClickListener {
             showAddPlantDialog()
         }
+
+
+        recyclerView.setOnClickListener {
+
+                val directions =
+                    com.example.gardeningjournal.GardeningFragmentDirections.actionGardeningFragmentToPlantDetailFragment()
+
+                findNavController().navigate(directions)
+            }
+
 
         return view
     }

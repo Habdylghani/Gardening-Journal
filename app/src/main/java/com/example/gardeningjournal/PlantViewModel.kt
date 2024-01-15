@@ -12,7 +12,7 @@ class PlantViewModel(application: Application) : AndroidViewModel(application) {
     private val gardeningDatabase = GardeningDatabase.invoke(application)
     private val plantList: LiveData<List<Plant>> = gardeningDatabase.getPlantDao().getAllPlants()
 
-    // New LiveData for selected plant
+
     private val _selectedPlant = MutableLiveData<Plant>()
     val selectedPlant: LiveData<Plant>
         get() = _selectedPlant
@@ -27,7 +27,7 @@ class PlantViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getAllPlants() = plantList
 
-    // Function to set the selected plant
+
     fun setSelectedPlant(plant: Plant) {
         _selectedPlant.value = plant
     }
