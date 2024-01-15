@@ -1,3 +1,5 @@
+package com.example.gardeningjournal
+
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -7,15 +9,20 @@ import com.example.gardeningjournal.data.database.GardeningDatabase
 import com.example.gardeningjournal.data.database.entities.Plant
 import kotlinx.coroutines.launch
 
-class PlantViewModel(application: Application) : AndroidViewModel(application) {
+class PlantDetailViewModel(application: Application) : AndroidViewModel(application) {
 
     private val gardeningDatabase = GardeningDatabase.invoke(application)
-    private val plantList: LiveData<List<Plant>> = gardeningDatabase.getPlantDao().getAllPlants()
 
     fun upsertPlant(item: Plant) = viewModelScope.launch {
         gardeningDatabase.getPlantDao().upsertPlant(item)
     }
 
-    fun getAllPlants() = plantList
+    fun getPlantById(plantId: Int): LiveData<Plant> {
+        return gardeningDatabase.getPlantDao().getPlantById(plantId)
+    }
+
+    fun deletePlantById(plantId: Int) = viewModelScope.launch {
+        gardeningDatabase.getPlantDao().delete(plantId)
+    }
 
 }

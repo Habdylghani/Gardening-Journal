@@ -2,13 +2,16 @@ import android.content.Context
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatDialog
+import com.example.gardeningjournal.PlantDetailViewModel
 
 import com.example.gardeningjournal.R
 import com.example.gardeningjournal.data.database.entities.Plant
 
+// AddPlantDialog.kt
 class AddPlantDialog(
     context: Context,
-    private val plantViewModel: PlantViewModel
+    private val plantViewModel: PlantViewModel,
+    private val existingPlant: Plant? = null
 ) : AppCompatDialog(context) {
 
     private lateinit var etName: EditText
@@ -20,6 +23,14 @@ class AddPlantDialog(
 
     init {
         initViews()
+
+        existingPlant?.let { plant ->
+            etName.setText(plant.name)
+            etDesc.setText(plant.type)
+            etDate.setText(plant.plantingDate)
+            etFrq.setText(plant.wateringFrequency.toString())
+        }
+
         initListeners()
     }
 
@@ -50,7 +61,6 @@ class AddPlantDialog(
         val wateringDate = etDate.text.toString()
         val frequency = etFrq.text.toString()
 
-        // Add your logic to handle the input values, validate them, and create a new Plant object
         val newPlant = Plant(
             name = plantName,
             type = plantDesc,
@@ -59,8 +69,20 @@ class AddPlantDialog(
             imageResourceId = R.drawable.flower
         )
 
-        plantViewModel.upsertPlant(newPlant)
+        if (existingPlant == null) {
+            plantViewModel.upsertPlant(newPlant)
+        } else {
+            existingPlant.apply {
+                name = plantName
+                type = plantDesc
+                plantingDate = wateringDate
+                wateringFrequency = frequency.toInt()
+            }
+            plantViewModel.upsertPlant(existingPlant)
+        }
 
         dismiss()
     }
 }
+
+

@@ -1,6 +1,7 @@
 package com.example.gardeningjournal.data.database.entities
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 
@@ -8,10 +9,10 @@ import androidx.room.PrimaryKey
 data class Plant(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val name: String,
-    val type: String,
-    val wateringFrequency: Int,
-    val plantingDate: String,
+    var name: String,
+    var type: String,
+    var wateringFrequency: Int,
+    var plantingDate: String,
     val imageResourceId: Int
 )
 

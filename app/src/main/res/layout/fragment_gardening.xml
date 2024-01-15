@@ -12,7 +12,6 @@
          android:layout_width="match_parent"
          android:layout_height="match_parent"
          android:padding="8dp"
-
          android:clipToPadding="false"
          tools:listitem="@layout/plant" />
 
@@ -23,6 +22,21 @@
          android:contentDescription="add"
          android:src="@drawable/add_green_100"
          app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent" />
+         app:layout_constraintEnd_toEndOf="parent"
+         tools:ignore="ImageContrastCheck" />
+
+
+
+     <ImageButton
+         android:id="@+id/btnBackGar"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="8dp"
+         android:contentDescription="@string/Back"
+         android:src="@drawable/btn_back"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         tools:ignore="TouchTargetSizeCheck" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
