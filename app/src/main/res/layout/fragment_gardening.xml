@@ -39,4 +39,17 @@
          tools:ignore="TouchTargetSizeCheck" />
 
 
+
+
+     <ImageButton
+         android:id="@+id/btnBackGar"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="8dp"
+         android:contentDescription="@string/Back"
+         android:src="@drawable/btn_back"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         tools:ignore="TouchTargetSizeCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
