@@ -16,6 +16,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <EditText
+        android:id="@+id/etPName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Plant Name"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/imgPDetail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/etPDescription"
+        android:layout_width="405dp"
+        android:layout_height="132dp"
+        android:layout_marginTop="8dp"
+        android:text="Plant Description"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPName"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/tvPName"
         android:layout_width="match_parent"
@@ -25,7 +49,8 @@
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/imgPDetail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/tvPDescription"
@@ -36,7 +61,8 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPName"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/tvPWateringDate"
@@ -48,6 +74,19 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/etPWateringDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Watering Date: MM/DD/YYYY"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/etPDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
@@ -56,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPWateringDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/btnUpdate"
@@ -66,8 +105,16 @@
         app:layout_constraintTop_toBottomOf="@+id/btnDelete"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
-
-
+        android:layout_marginTop="16dp" />
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/Back"
+        android:src="@drawable/btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

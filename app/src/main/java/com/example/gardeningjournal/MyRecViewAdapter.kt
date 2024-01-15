@@ -3,11 +3,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gardeningjournal.GardeningFragmentDirections
+
 import com.example.gardeningjournal.R
 import com.example.gardeningjournal.data.database.entities.Plant
-import androidx.navigation.fragment.findNavController
 
 class MyRecViewAdapter(
     var plantlist: List<Plant>,
@@ -38,14 +38,12 @@ class MyRecViewAdapter(
         holder.imageView.setImageResource(currentPlant.imageResourceId)
         holder.textView.text = currentPlant.name
 
-        holder.itemView.setOnClickListener {
-            val directions =
-                GardeningFragmentDirections.actionGardeningFragmentToPlantDetailFragment()
-            //navController.navigate(directions)
-        }
 
-//        holder.itemView.setOnClickListener {
-//            plantItemClickListener?.onPlantItemClick(currentPlant)
-//        }
+
+
+
+        holder.itemView.setOnClickListener {
+            plantItemClickListener?.onPlantItemClick(currentPlant)
+        }
     }
 }
